@@ -24,7 +24,7 @@ var CurrencyConverter = function (_React$Component) {
     }
 
     _createClass(CurrencyConverter, [{
-        key: "handleChange",
+        key: 'handleChange',
         value: function handleChange(event) {
             var _event$target = event.target,
                 name = _event$target.name,
@@ -33,43 +33,55 @@ var CurrencyConverter = function (_React$Component) {
                 usd = _state.usd,
                 euro = _state.euro;
 
+
             switch (name) {
                 case "usd":
-                    usd = value;
-                    euro = (usd * 0.89).toFixed(2);
+
+                    if (!value) {
+                        usd = '';
+                        euro = '';
+                    } else {
+                        usd = value;
+                        euro = (usd * 0.89).toFixed(2);
+                    }
                     break;
                 case "euro":
-                    euro = value;
-                    usd = (euro * (1 / 0.89)).toFixed(2);
+                    if (!value) {
+                        usd = '';
+                        euro = '';
+                    } else {
+                        euro = value;
+                        usd = (euro * (1 / 0.89)).toFixed(2);
+                    }
                     break;
             }
 
             this.setState({ euro: euro, usd: usd });
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
-                { className: "container" },
+                'div',
+                { className: 'container' },
                 React.createElement(
-                    "h1",
-                    { className: "text-center" },
-                    "Currency Converter"
+                    'h1',
+                    { className: 'text-center' },
+                    'Currency Converter'
                 ),
                 React.createElement(
-                    "h2",
-                    { className: "text-center" },
-                    "USD:1 : 0.89EURO"
+                    'h2',
+                    { className: 'text-center' },
+                    'USD 1 : 0.89 EURO'
                 ),
                 React.createElement(
-                    "div",
-                    { className: "d-flex justify-content-center" },
+                    'div',
+                    { className: 'd-flex justify-content-center' },
                     React.createElement(UsdForm, { handleChange: this.handleChange, usd: this.state.usd }),
                     React.createElement(
-                        "span",
-                        { "class": "mx-3" },
-                        "="
+                        'span',
+                        { className: 'mx-3' },
+                        '='
                     ),
                     React.createElement(EuroForm, { handleChange: this.handleChange, euro: this.state.euro })
                 )
